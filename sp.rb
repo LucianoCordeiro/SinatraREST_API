@@ -11,9 +11,9 @@ DataMapper.finalize
 DataMapper.auto_migrate!
 
 get '/' do
-  @title = "Home page"
+  @title = 'Home page'
   haml :home
-  @cats = ["Mario", "Anderson"].join(", ")
+  @cats = %w[Mario Anderson].join(', ')
 end
 
 get '/cats' do
@@ -45,7 +45,7 @@ put '/cats/:id' do
   cat = Cat.get(params[:id])
   if cat.update(params[:cat])
     status 200
-    json "Cat has been updated"
+    json 'Cat has been updated'
   else
     status 500
     json review.errors.full_messages
@@ -56,6 +56,6 @@ delete '/cats/:id' do
   cat = Cat.get(params[:id])
   if cat.destroy
     status 200
-    json "Cat has been deleted"
+    json 'Cat has been deleted'
   end
 end
